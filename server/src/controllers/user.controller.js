@@ -18,6 +18,25 @@ exports.get = (req, res) => {
     })
 };
 
+exports.post = (req, res) => {
+	var new_user = new User(req.body);
+	new_user.save(function (error) {
+		if (error) {
+			console.log(error);
+			res.send({
+		      success: false,
+		      message: error
+		    })
+		} else {
+			res.send({
+		      success: true,
+		      message: 'User saved successfully!'
+		    })
+		}
+	})
+}
+
+
 exports.login = async(req, res, next) => {
 	try {
 		User.find({email: req.body.email, password: req.body.password}, function (error, user) {

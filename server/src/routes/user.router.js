@@ -3,6 +3,7 @@ const validate = require('express-validation');
 const controller = require('../controllers/user.controller');
 const {
     get,
+    post,
     list,
     register,
     login
@@ -12,7 +13,8 @@ const router = express.Router();
 
 router
   .route('/')
-  .get(controller.get);
+  .get(controller.get)
+  .post(controller.post);
 
 router
   .route('/list')
